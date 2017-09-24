@@ -7,7 +7,9 @@ public class OptionalMain {
         Optional<Integer> numOptional = Optional.of(5)
                 .map(num -> num + 5)
                 .map(num -> num * 2)
-                .map(num -> num - 2);
+                .map(num -> num - 2)
+                .filter(num -> num % 2 == 0)
+                .map(num -> num * 5);
         System.out.println(numOptional);
     }
 }
