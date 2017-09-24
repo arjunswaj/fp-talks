@@ -8,5 +8,8 @@ object OptionMain {
   def main(args: Array[String]): Unit = {
     val a = Some(5)
     val b = Some(6)
+
+    val res = a.flatMap(num1 => b.map(num2 => num1 + num2))
+    println(res)
   }
 }

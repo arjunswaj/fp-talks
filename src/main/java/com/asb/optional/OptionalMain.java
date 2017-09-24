@@ -12,5 +12,7 @@ public class OptionalMain {
         Optional<Integer> num1 = Optional.of(5);
         Optional<Integer> num2 = Optional.of(6);
 
+        Optional<Integer> result = num1.flatMap(a -> num2.map(b -> a + b));
+        System.out.println(result);
     }
 }
