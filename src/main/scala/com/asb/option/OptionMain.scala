@@ -8,7 +8,7 @@ object OptionMain {
     val c = Some(7)
     val d = Some(8)
 
-    // val res = a.flatMap(num1 => b.map(num2 => num1 + num2))
+    // val res = a.flatMap(num1 => b.flatMap(num2 => c.flatMap(num3 => d.map(num4 => num1 + num2 + num3 + num4))))
 
     val res = for {
       num1 <- a
