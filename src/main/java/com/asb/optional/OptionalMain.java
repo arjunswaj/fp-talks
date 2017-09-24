@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class OptionalMain {
 
-    public static Optional<Double> sqrt(int num) {
+    static Optional<Double> sqrt(int num) {
         if (num < 0) {
             return Optional.empty();
         } else {
@@ -13,6 +13,8 @@ public class OptionalMain {
     }
 
     public static void main(String[] args) {
-        Optional<Integer> numOptional = Optional.of(5);
+        Optional<Double> numOptional = Optional.of(5)
+                .flatMap(num -> sqrt(num));
+        System.out.println(numOptional);
     }
 }

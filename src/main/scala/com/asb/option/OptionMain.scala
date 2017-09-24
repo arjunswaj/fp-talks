@@ -8,6 +8,8 @@ object OptionMain {
 
   def main(args: Array[String]): Unit = {
     val numOption = Some(5)
-    val sqrtNum = ???
+    val sqrtNum = numOption.flatMap(num => sqrt(num))
+
+    println(sqrtNum)
   }
 }
