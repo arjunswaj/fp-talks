@@ -4,17 +4,13 @@ import java.util.Optional;
 
 public class OptionalMain {
 
-    static Optional<Double> sqrt(int num) {
-        if (num < 0) {
-            return Optional.empty();
-        } else {
-            return Optional.of(Math.sqrt(num));
-        }
+    static int sum(int a, int b) {
+        return a + b;
     }
 
     public static void main(String[] args) {
-        Optional<Double> numOptional = Optional.of(5)
-                .flatMap(num -> sqrt(num));
-        System.out.println(numOptional);
+        Optional<Integer> num1 = Optional.of(5);
+        Optional<Integer> num2 = Optional.of(6);
+
     }
 }
