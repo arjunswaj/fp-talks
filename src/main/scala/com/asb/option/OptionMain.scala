@@ -2,7 +2,7 @@ package com.asb.option
 
 object OptionMain {
 
-  case class Employee(id: Long, name: String, age: Long, team: String)
+  case class Employee(id: Long, name: String, age: Long, team: String, level: Long)
 
   case class Address(id: Long, empID: Long, line1: String, line2: String, city: String, state: String, pin: String)
 
@@ -13,8 +13,8 @@ object OptionMain {
   }
 
   def getEmployeeById(id: Long): Option[Employee] = id match {
-    case 1L => Some(Employee(1L, "Arjun", 28, "SSR"))
-    case 2L => Some(Employee(2L, "Aditya", 23, "SE"))
+    case 1L => Some(Employee(1L, "Arjun", 28, "SSR", 5))
+    case 2L => Some(Employee(2L, "Aditya", 23, "SE", 4))
     case _ => None
   }
 
@@ -25,17 +25,20 @@ object OptionMain {
   }
 
   def main(args: Array[String]): Unit = {
-    //    val pin = getEmployeeIdByEmployeeName("Arjun")
-    //      .flatMap(id => getEmployeeById(id)
-    //        .flatMap(emp => getAddressByEmpId(emp.id)))
-    //      .map(address => address.pin)
+    val pin = getEmployeeIdByEmployeeName("Aditya")
+      .flatMap(id => getEmployeeById(id)
+        .filter(emp => emp.level < 5)
+        .flatMap(emp => getAddressByEmpId(emp.id)))
+      .map(address => address.pin)
 
-    val pin = for {
+    println(pin)
+
+    val pin2 = for {
       id <- getEmployeeIdByEmployeeName("Arjun")
-      emp <- getEmployeeById(id)
+      emp <- getEmployeeById(id) if emp.level < 5
       address <- getAddressByEmpId(emp.id)
     } yield address.pin
 
-    println(pin)
+    println(pin2)
   }
 }
