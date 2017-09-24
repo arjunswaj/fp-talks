@@ -25,10 +25,17 @@ object OptionMain {
   }
 
   def main(args: Array[String]): Unit = {
-    val pin = getEmployeeIdByEmployeeName("Arjun")
-      .flatMap(id => getEmployeeById(id)
-        .flatMap(emp => getAddressByEmpId(emp.id)))
-      .map(address => address.pin)
+    //    val pin = getEmployeeIdByEmployeeName("Arjun")
+    //      .flatMap(id => getEmployeeById(id)
+    //        .flatMap(emp => getAddressByEmpId(emp.id)))
+    //      .map(address => address.pin)
+
+    val pin = for {
+      id <- getEmployeeIdByEmployeeName("Arjun")
+      emp <- getEmployeeById(id)
+      address <- getAddressByEmpId(emp.id)
+    } yield address.pin
+
     println(pin)
   }
 }
