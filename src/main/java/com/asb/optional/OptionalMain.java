@@ -4,7 +4,8 @@ import java.util.Optional;
 
 public class OptionalMain {
     public static void main(String[] args) {
-        Optional<Integer> num = Optional.of(5);
-        System.out.println(num);
+        Optional<Integer> numOptional = Optional.of(5)
+                .map(num -> num + 5);
+        System.out.println(numOptional);
     }
 }
